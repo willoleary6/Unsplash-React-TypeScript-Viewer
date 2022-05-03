@@ -1,0 +1,36 @@
+:root {
+    --time-side-navbar-transition: 400ms;
+}
+
+/* Transitions to make changing from full nav to mini nav smooth */
+.navbar-static-side {
+    transition: var(--time-side-navbar-transition);
+}
+
+#page-wrapper {
+    transition: var(--time-side-navbar-transition);
+}
+
+/* Stop menu items from jumping around and overflowing while transitioning from
+full nav to mini nav. */
+#side-menu li {
+    overflow: clip;
+    white-space: nowrap;
+}
+
+/* Override Inspinia styles that conflict with additional styles. */
+body.mini-navbar #side-menu li {
+    overflow: visible;
+}
+
+body.mini-navbar .metismenu .collapse a {
+    display: block;
+}
+
+body.mini-navbar ul.nav-second-level a span.nav-label {
+    display: block;
+}
+
+.mini-navbar .metismenu ul.collapse {
+    opacity: 1;
+}

@@ -1,0 +1,60 @@
+.leaflet-map-container {
+    height: 35em;
+}
+#crosshair {
+    left: calc(50% - 10px);
+    top: calc(50% - 10px);
+    position: absolute;
+    width: 2em;
+    height: 2em;
+    z-index: 10000;
+    text-align: left;
+    font-weight: normal;
+    font-size: 2em;
+    color: #222;
+    text-shadow: 1px 1px 3px #fff;
+}
+
+.latitude-value-container {
+    float: left;
+}
+
+.longitude-value-container {
+    float: right;
+}
+
+.latitude-value-container,
+.longitude-value-container {
+    display: inline;
+}
+
+.longitude-latitude-display {
+    border: 30;
+    font-family: inherit;
+    transition: all 0.15s ease;
+}
+
+.longitude-latitude-titlebox {
+    padding-right: 0.1em;
+    padding-left: 0.1em;
+    font-weight: bold;
+}
+
+.coordinate-input-container {
+    display: flex;
+}
+
+.coordinate-input-controls {
+    width: 35%;
+    float: left;
+}
+
+.error-message {
+    color: #d8000c;
+    background-color: #ffbaba;
+}
+.map-element-row {
+    display: inline-block;
+    width: 100%;
+    white-space: nowrap;
+}

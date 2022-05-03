@@ -1,0 +1,58 @@
+:root {
+    --padding-for-top-navbar: 4rem;
+}
+
+.navbar.navbar-static-top {
+    background-color: var(--color-inspinia-navy);
+    padding-right: 30px;
+}
+
+/* Move links to the left. */
+.nav.navbar-top-links.navbar-left {
+    margin-right: auto;
+}
+
+.nav.navbar-top-links li a:hover,
+.nav.navbar-top-links li a.active {
+    color: white;
+    background-color: var(--color-inspinia-navy-active);
+}
+
+/* Styles for the side nav toggle button. */
+#side-navbar-toggle {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    width: 70px;
+    height: 100%;
+
+    margin: 0 0 0 0;
+    border: none;
+    border-radius: 0;
+
+    color: white;
+    background-color: transparent;
+}
+
+#side-navbar-toggle:hover {
+    background-color: var(--color-inspinia-teal);
+}
+
+#side-navbar-toggle svg {
+    fill: white;
+}
+
+.app-title {
+    padding-right: 1rem;
+    margin: 0;
+}
+
+/* Move other components on the page down to keep them visible. */
+.navbar-static-side {
+    padding-top: var(--padding-for-top-navbar);
+}
+
+#page-wrapper {
+    padding-top: var(--padding-for-top-navbar);
+}

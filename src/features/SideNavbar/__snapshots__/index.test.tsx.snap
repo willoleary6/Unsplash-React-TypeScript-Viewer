@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SideNavbar render testing renders panel and takes snapshot to track jsx element changes, will also test for exceptions in element code 1`] = `
+<nav
+  className="navbar-default navbar-static-side"
+  role="navigation"
+>
+  <div
+    className="sidebar-collapse"
+  >
+    <ul
+      className="nav metismenu"
+      id="side-menu"
+    >
+      <SideNavbarItem
+        key="GeoJsonRoute"
+        route={
+          Object {
+            "component": [Function],
+            "icon": <i
+              className="fa fa-globe"
+            />,
+            "id": "GeoJsonRoute",
+            "label": "GeoJSON",
+            "path": "/",
+          }
+        }
+      />
+    </ul>
+  </div>
+</nav>
+`;

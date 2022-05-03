@@ -1,0 +1,91 @@
+{
+  "name": "Unsplash Viewer",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.7.1",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^12.1.2",
+    "@testing-library/user-event": "^13.4.1",
+    "@types/geojson": "^7946.0.8",
+    "@types/jest": "^26.0.24",
+    "@types/node": "^15.14.9",
+    "@types/react": "^17.0.30",
+    "@types/react-dom": "^17.0.9",
+    "@types/react-redux": "^7.1.19",
+    "@types/react-router-dom": "^5.3.1",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
+    "@wojtekmaj/enzyme-adapter-react-17": "^0.6.6",
+    "animate.css": "^4.1.1",
+    "axios": "^0.25.0",
+    "bootstrap": "^4.6.0",
+    "enzyme": "^3.11.0",
+    "enzyme-to-json": "^3.6.2",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-jest": "^24.7.0",
+    "eslint-plugin-prettier": "^3.4.1",
+    "eslint-plugin-react": "^7.26.1",
+    "fontawesome-4.7": "^4.7.0",
+    "jest": "^27.4.7",
+    "jest-cli": "^27.4.7",
+    "leaflet": "^1.7.1",
+    "moment": "^2.29.1",
+    "moment-timezone": "^0.5.33",
+    "node-fetch": "^3.2.0",
+    "osm-geojson": "^0.8.4",
+    "osmtogeojson": "^3.0.0-beta.4",
+    "prettier": "^2.4.1",
+    "react": "^17.0.2",
+    "react-bootstrap": "^1.6.4",
+    "react-collapse": "^5.1.0",
+    "react-dom": "^17.0.2",
+    "react-epic-spinners": "^0.5.0",
+    "react-leaflet": "^3.2.5",
+    "react-redux": "^7.2.5",
+    "react-router-dom": "^5.3.0",
+    "react-scripts": "^5.0.0",
+    "react-virtualized": "^9.22.3",
+    "redux-mock-store": "^1.5.4",
+    "typescript": "^4.4.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "lint": "tsc --noEmit && eslint src/**/*.ts{,x}",
+    "format": "prettier --write src/**/*.ts{,x}"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/eslint-parser": "^7.17.0",
+    "@types/activex-excel": "^14.0.6",
+    "@types/enzyme": "^3.10.11",
+    "@types/faker": "^5.5.9",
+    "@types/leaflet": "^1.7.9",
+    "@types/react-collapse": "^5.0.1",
+    "@types/react-virtualized": "^9.21.13",
+    "@types/react-virtualized-auto-sizer": "^1.0.1",
+    "@types/react-window": "^1.8.5",
+    "@types/redux-mock-store": "^1.0.3",
+    "@types/topojson": "^3.2.3",
+    "eslint": "^8.8.0",
+    "eslint-config-standard-ts": "^21.0.0",
+    "eslint-plugin-react-hooks": "^4.2.1-rc.0-next-fa816be7f-20220128"
+  }
+}
