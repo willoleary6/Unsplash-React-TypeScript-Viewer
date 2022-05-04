@@ -1,11 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { searchUnsplashData } from "../../slices/UnsplashViewer/thunks";
-import { useAppDispatch } from "../../app/hooks";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { selectUnsplashSearchResults } from "../../slices/UnsplashViewer/selectors";
+import { UnsplashApiSearchResult } from "../../slices/UnsplashViewer/slice";
+import { SearchBar } from "../../features/SearchBar";
+import { GalleryImage } from "../../features/GalleryImage";
+import { GalleryImageModal } from "../../features/GalleryImageModal";
 export function UnsplashViewerDashboard(): JSX.Element {
+    const [showModal, setShowModal] = useState(false);
     const dispatch = useAppDispatch();
-
-    const onButtonClick = () => {
-        dispatch(searchUnsplashData());
+    const searchResults = useAppSelector(selectUnsplashSearchResults);
+    const onButtonClick = (searchInput: string) => {
+        dispatch(searchUnsplashData(searchInput));
     };
 
     return (
@@ -14,10 +20,26 @@ export function UnsplashViewerDashboard(): JSX.Element {
             <div className="row">
                 <div className="col-lg-4 mt-5"></div>
                 <div className="col-lg-4 mt-5">
-                    <button onClick={onButtonClick}>Test</button>
+                    <SearchBar executeSearchFunction={onButtonClick} />
                 </div>
                 <div className="col-lg-4 mt-5"></div>
             </div>
+
+            <section className="overflow-hidden text-gray-700 ">
+                <div className="container px-5 py-2 mx-auto lg:pt-12 lg:px-32">
+                    <div className="flex flex-wrap -m-1 md:-m-2">
+                        {searchResults.map((searchResult: UnsplashApiSearchResult) => (
+                            <GalleryImage
+                                key={searchResult.id}
+                                imageSearchResult={searchResult}
+                                showModal={showModal}
+                                setShowModal={setShowModal}
+                            />
+                        ))}
+                    </div>
+                </div>
+                <GalleryImageModal showModal={showModal} setShowModal={setShowModal} />
+            </section>
         </>
     );
 }

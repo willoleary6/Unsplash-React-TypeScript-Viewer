@@ -1,5 +1,4 @@
 import React from "react";
-import { GeoJsonDashboard } from "./GeoJsonDashboard";
 import { UnsplashViewerDashboard } from "./UnsplashViewerDashboard";
 /**
  * Route information
@@ -20,15 +19,8 @@ export interface Route {
 export const routes: Route[] = [
     // Top level route with no subroutes
     {
-        id: "GeoJsonRoute",
-        path: "/",
-        label: "GeoJSON",
-        icon: <i className="fa fa-globe"></i>,
-        component: GeoJsonDashboard,
-    },
-    {
         id: "UnsplashViewerDashboard",
-        path: "/UnspashViewer",
+        path: "/",
         label: "Unsplash Viewer",
         icon: <i className="fa fa-picture-o"></i>,
         component: UnsplashViewerDashboard,
