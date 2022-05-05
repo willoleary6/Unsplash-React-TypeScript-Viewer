@@ -1,8 +1,0 @@
-/* This file contains global  styles, it is imported after other global
-styles so it can be used to overwrite them. Component specific styling should go
-in the CSS file associated with that component. */
-:root {
-    --color-inspinia-teal: #1ab394;
-    --color-inspinia-navy: #2f4050;
-    --color-inspinia-navy-active: #293546;
-}

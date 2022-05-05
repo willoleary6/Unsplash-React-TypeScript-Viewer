@@ -2,8 +2,6 @@
 import "bootstrap/dist/css/bootstrap.css";
 import "fontawesome-4.7/css/font-awesome.css";
 import "animate.css/animate.css";
-import "./inspinia/style/inspinia.css";
-import "./style/additionalStyles.css";
 import "./index.css";
 import "flowbite";
 import React from "react";

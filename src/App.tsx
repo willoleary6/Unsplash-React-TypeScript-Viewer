@@ -1,8 +1,6 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 
-import { SideNavbar } from "./features/SideNavbar";
-import { TopNavbar } from "./features/TopNavbar";
 import { routes } from "./routes/routes";
 import { Footer } from "./features/Footer";
 function App(): JSX.Element {
@@ -16,10 +14,10 @@ function App(): JSX.Element {
     });
     return (
         <React.Fragment>
-            <div className="grid grid-cols-12 gap-4 min-h-screen">
-                <div className="col-span-12">
-                    <div className="flex flex-col justify-between h-full bg-neutral-100">
-                        <div>
+            <div className=" overflow-x-hidden">
+                <div>
+                    <div className="flex flex-col bg-neutral-100">
+                        <div className="min-h-screen">
                             <Switch>{renderRoutes}</Switch>
                         </div>
                         <div>
