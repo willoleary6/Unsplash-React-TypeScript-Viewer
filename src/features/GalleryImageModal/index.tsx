@@ -1,1 +1,0 @@
-export { GalleryImageModal } from "./GalleryImageModal";

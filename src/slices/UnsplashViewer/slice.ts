@@ -1,9 +1,10 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { searchUnsplashData } from "./thunks";
 
 export interface UnsplashViewerState {
     apiRequestInProgress: boolean;
     searchResults: UnsplashApiSearchResult[];
+    selectedGalleryImageId: string;
 }
 
 export interface UnsplashDownloadLinks {
@@ -43,6 +44,7 @@ export interface UnsplashApiSearchResult {
 
 export const initialState: UnsplashViewerState = {
     apiRequestInProgress: false,
+    selectedGalleryImageId: "",
     searchResults: [],
 };
 
@@ -50,7 +52,11 @@ export const unsplashViewer = createSlice({
     name: "UnsplashViewer",
     initialState,
     // The `reducers` field lets us define reducers and generate associated actions
-    reducers: {},
+    reducers: {
+        updateSelectedPhoto: (UnsplashViewerState, action: PayloadAction<string>) => {
+            UnsplashViewerState.selectedGalleryImageId = action.payload;
+        },
+    },
     extraReducers: (builder) => {
         builder.addCase(searchUnsplashData.fulfilled, (UnsplashViewerState, action) => {
             const payload = action.payload.results;
@@ -59,6 +65,6 @@ export const unsplashViewer = createSlice({
     },
 });
 
-export const {} = unsplashViewer.actions;
+export const { updateSelectedPhoto } = unsplashViewer.actions;
 
 export default unsplashViewer.reducer;

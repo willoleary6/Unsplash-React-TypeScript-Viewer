@@ -5,3 +5,11 @@ export const selectUnsplashViewer = (state: RootState): UnsplashViewerState => s
 
 export const selectUnsplashSearchResults = (state: RootState): UnsplashApiSearchResult[] =>
     state.unsplash.searchResults;
+
+export const selectGalleryImageForModal = (
+    state: RootState
+): UnsplashApiSearchResult | undefined => {
+    return state.unsplash.searchResults.find((galleryImage: UnsplashApiSearchResult) => {
+        return galleryImage.id === state.unsplash.selectedGalleryImageId;
+    });
+};

@@ -4,8 +4,8 @@ import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { selectUnsplashSearchResults } from "../../slices/UnsplashViewer/selectors";
 import { UnsplashApiSearchResult } from "../../slices/UnsplashViewer/slice";
 import { SearchBar } from "../../features/SearchBar";
-import { GalleryImage } from "../../features/GalleryImage";
-import { GalleryImageModal } from "../../features/GalleryImageModal";
+import { GalleryTile } from "../../features/GalleryTile";
+import { GalleryModal } from "../../features/GalleryModal";
 export function UnsplashViewerDashboard(): JSX.Element {
     const [showModal, setShowModal] = useState(false);
     const dispatch = useAppDispatch();
@@ -29,7 +29,7 @@ export function UnsplashViewerDashboard(): JSX.Element {
                 <div className="container px-5 py-2 mx-auto lg:pt-12 lg:px-32">
                     <div className="flex flex-wrap -m-1 md:-m-2">
                         {searchResults.map((searchResult: UnsplashApiSearchResult) => (
-                            <GalleryImage
+                            <GalleryTile
                                 key={searchResult.id}
                                 imageSearchResult={searchResult}
                                 showModal={showModal}
@@ -38,7 +38,7 @@ export function UnsplashViewerDashboard(): JSX.Element {
                         ))}
                     </div>
                 </div>
-                <GalleryImageModal showModal={showModal} setShowModal={setShowModal} />
+                <GalleryModal showModal={showModal} setShowModal={setShowModal} />
             </section>
         </>
     );
