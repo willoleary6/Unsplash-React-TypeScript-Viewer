@@ -4,14 +4,8 @@ import "./footer.css";
 export const Footer = (): JSX.Element => {
     return (
         <>
-            <div className="footer-spacer">
-                {/*
-                This div is here simply to take up space at the bottom of the page so
-                that the footer does not overlap with page content.
-                */}
-            </div>
-            <div className="footer">
-                <div>Unsplash Viewer</div>
+            <div className=" w-full bg-gray-700 text-gray-200 shadow-inner">
+                <div>Unsplash Viewer - {new Date().getFullYear()}</div>
             </div>
         </>
     );

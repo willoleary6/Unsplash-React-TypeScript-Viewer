@@ -16,9 +16,10 @@ export const SideNavbarItem = ({ route }: SideNavbarItemProps): JSX.Element => {
     return (
         <li className={match ? "active" : ""}>
             <Link to={route.path}>
-                <>
-                    {route.icon} <span className="nav-label">{route.label}</span>
-                </>
+                <div className="flex flex-col">
+                    <div className="px-6 py-2.5">{route.icon}</div>
+                    <span className="nav-label">{route.label}</span>
+                </div>
             </Link>
         </li>
     );

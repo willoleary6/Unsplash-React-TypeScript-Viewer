@@ -11,9 +11,9 @@ interface SideNavbarProps {
 
 export const SideNavbar = ({ routes }: SideNavbarProps): JSX.Element => {
     return (
-        <nav className="navbar-default navbar-static-side" role="navigation">
-            <div className="sidebar-collapse">
-                <ul className="nav metismenu" id="side-menu">
+        <nav className=" bg-slate-600 " role="navigation">
+            <div>
+                <ul>
                     {routes.map((route) => {
                         return <SideNavbarItem key={route.id} route={route}></SideNavbarItem>;
                     })}
