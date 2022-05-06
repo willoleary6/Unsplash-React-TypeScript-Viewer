@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { searchUnsplashData } from "../../slices/UnsplashViewer/thunks";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { selectUnsplashSearchResults } from "../../slices/UnsplashViewer/selectors";
@@ -14,24 +14,41 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { LoadingSpinner } from "../../features/LoadingSpinner";
 
 export function UnsplashViewerDashboard(): JSX.Element {
+    const dispatch = useAppDispatch();
     const [showModal, setShowModal] = useState(false);
+    const [hasMore, setHasMore] = useState(false);
+    const searchResults = useAppSelector(selectUnsplashSearchResults);
+    const [infiniteScrollLength, setInfiniteScrollLength] = useState(10);
 
-    const [infiniteScrollLength, setInfiniteScrollLength] = useState(40);
-    const [values, setValues] = useState(Array.from({ length: infiniteScrollLength }));
+    const [viewableImages, setViewableImages] = useState(
+        searchResults.slice(0, infiniteScrollLength)
+    );
+
+    useEffect(() => {
+        fetchMoreData();
+    }, [searchResults]);
+
+    useEffect(() => {
+        setViewableImages(searchResults.slice(0, infiniteScrollLength));
+    }, [infiniteScrollLength]);
 
     const fetchMoreData = () => {
-        setValues(values.concat(Array.from({ length: infiniteScrollLength })));
+        let listIncrementSize = 15;
+        if (searchResults.length > viewableImages.length) {
+            if (searchResults.length - viewableImages.length < infiniteScrollLength) {
+                listIncrementSize = searchResults.length - viewableImages.length;
+            }
+            setHasMore(true);
+            setInfiniteScrollLength(infiniteScrollLength + listIncrementSize);
+        } else if (searchResults.length !== 0) {
+            setHasMore(false);
+            dispatch(incrementCurrentResultPage());
+            dispatch(searchUnsplashData());
+        }
     };
 
-    const dispatch = useAppDispatch();
-    const searchResults = useAppSelector(selectUnsplashSearchResults);
-    const onButtonClick = (searchInput: string) => {
+    const searchBarExecution = (searchInput: string) => {
         dispatch(updateSearchQuery(searchInput));
-        dispatch(searchUnsplashData());
-    };
-
-    const more = () => {
-        dispatch(incrementCurrentResultPage());
         dispatch(searchUnsplashData());
     };
 
@@ -41,39 +58,29 @@ export function UnsplashViewerDashboard(): JSX.Element {
             <div className="row">
                 <div className="col-lg-4 mt-5"></div>
                 <div className="col-lg-4 mt-5">
-                    <SearchBar executeSearchFunction={onButtonClick} />
+                    <SearchBar executeSearchFunction={searchBarExecution} />
                 </div>
                 <div className="col-lg-4 mt-5"></div>
             </div>
-            {/*
-                <div className=" overflow-hidden flex flex-col">
-                    <InfiniteScroll
-                        dataLength={infiniteScrollLength}
-                        next={fetchMoreData}
-                        hasMore={true}
-                        loader={<LoadingSpinner />}
-                    >
-                        {values.map((i, index) => (
-                            <div className=" py-4" key={index}>
-                                div - #{index}
-                            </div>
-                        ))}
-                    </InfiniteScroll>
-                </div>
-                */}
+            <div className=" overflow-hidden flex flex-col"></div>
             <section className="overflow-hidden text-gray-700 ">
                 <div className="container px-5 py-2 mx-auto lg:pt-12 lg:px-32">
-                    <div className="flex flex-wrap -m-1 md:-m-2">
-                        {searchResults.map((searchResult: UnsplashApiSearchResult) => (
+                    <InfiniteScroll
+                        className="flex flex-wrap -m-1 md:-m-2 overflow-hidden "
+                        dataLength={viewableImages.length}
+                        next={fetchMoreData}
+                        hasMore={hasMore}
+                        loader={<LoadingSpinner />}
+                    >
+                        {viewableImages.map((searchResult: UnsplashApiSearchResult) => (
                             <GalleryTile
-                                key={searchResult.id}
+                                key={searchResult.id + "-" + Date.now()}
                                 imageSearchResult={searchResult}
                                 showModal={showModal}
                                 setShowModal={setShowModal}
                             />
                         ))}
-                    </div>
-                    <button onClick={() => more()}>test</button>
+                    </InfiniteScroll>
                 </div>
                 <GalleryModal showModal={showModal} setShowModal={setShowModal} />
             </section>
