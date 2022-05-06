@@ -14,9 +14,9 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { LoadingSpinner } from "../../features/LoadingSpinner";
 
 export function UnsplashViewerDashboard(): JSX.Element {
-    const dispatch = useAppDispatch();
     const [showModal, setShowModal] = useState(false);
-    const [hasMore, setHasMore] = useState(false);
+
+    const [hasMore, setHasMore] = useState(true);
     const searchResults = useAppSelector(selectUnsplashSearchResults);
     const [infiniteScrollLength, setInfiniteScrollLength] = useState(10);
 
@@ -30,16 +30,16 @@ export function UnsplashViewerDashboard(): JSX.Element {
 
     useEffect(() => {
         setViewableImages(searchResults.slice(0, infiniteScrollLength));
-    }, [infiniteScrollLength]);
+    }, [infiniteScrollLength, searchResults]);
 
     const fetchMoreData = () => {
-        let listIncrementSize = 15;
+        let listIncrementSize = 10;
         if (searchResults.length > viewableImages.length) {
             if (searchResults.length - viewableImages.length < infiniteScrollLength) {
                 listIncrementSize = searchResults.length - viewableImages.length;
             }
-            setHasMore(true);
             setInfiniteScrollLength(infiniteScrollLength + listIncrementSize);
+            setHasMore(true);
         } else if (searchResults.length !== 0) {
             setHasMore(false);
             dispatch(incrementCurrentResultPage());
@@ -47,7 +47,9 @@ export function UnsplashViewerDashboard(): JSX.Element {
         }
     };
 
-    const searchBarExecution = (searchInput: string) => {
+    const dispatch = useAppDispatch();
+
+    const searchExecution = (searchInput: string) => {
         dispatch(updateSearchQuery(searchInput));
         dispatch(searchUnsplashData());
     };
@@ -58,7 +60,7 @@ export function UnsplashViewerDashboard(): JSX.Element {
             <div className="row">
                 <div className="col-lg-4 mt-5"></div>
                 <div className="col-lg-4 mt-5">
-                    <SearchBar executeSearchFunction={searchBarExecution} />
+                    <SearchBar executeSearchFunction={searchExecution} />
                 </div>
                 <div className="col-lg-4 mt-5"></div>
             </div>
@@ -74,7 +76,7 @@ export function UnsplashViewerDashboard(): JSX.Element {
                     >
                         {viewableImages.map((searchResult: UnsplashApiSearchResult) => (
                             <GalleryTile
-                                key={searchResult.id + "-" + Date.now()}
+                                key={searchResult.id} // issue here with the keys, need to have only unique photos
                                 imageSearchResult={searchResult}
                                 showModal={showModal}
                                 setShowModal={setShowModal}
