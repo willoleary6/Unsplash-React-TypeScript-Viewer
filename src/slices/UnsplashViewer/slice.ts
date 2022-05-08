@@ -6,6 +6,13 @@ export interface UnsplashViewerState {
     selectedGalleryImageId: string;
     searchQuery: string;
     currentResultPage: number;
+    searchStatus:
+        | "Idle"
+        | "In Progress"
+        | "Success"
+        | "Error"
+        | "No Results"
+        | "All results retrieved";
 }
 
 export interface UnsplashDownloadLinks {
@@ -60,6 +67,7 @@ export const initialState: UnsplashViewerState = {
     searchResults: [],
     searchQuery: "",
     currentResultPage: 1,
+    searchStatus: "Idle",
 };
 
 export const unsplashViewer = createSlice({
@@ -72,6 +80,7 @@ export const unsplashViewer = createSlice({
         },
         updateSearchQuery: (UnsplashViewerState, action: PayloadAction<string>) => {
             UnsplashViewerState.searchQuery = action.payload;
+            UnsplashViewerState.currentResultPage = 1;
             UnsplashViewerState.searchResults = []; // clear the existing results
         },
         incrementCurrentResultPage: (UnsplashViewerState) => {
@@ -80,27 +89,49 @@ export const unsplashViewer = createSlice({
     },
     extraReducers: (builder) => {
         builder.addCase(searchUnsplashData.fulfilled, (UnsplashViewerState, action) => {
-            const payload = action.payload.results;
-
-            // To ensure the app is running fluidly, we need to ensure the elements we supply to the react dom
-            // have unique key values, I have noticed that we have repeated usage of the ids inbetween search queries
-            // if there is a conflict between the keys, this will hurt both reacts performance and will throw some exceptions
-            // solution then must be to take the timestamp at which this query results have been received and append this timestamp
-            // to the end of each of the images id field.
-            if (payload.constructor.name === "Array") {
+            if (
+                action.payload.hasOwnProperty("results") &&
+                action.payload.results.constructor.name === "Array"
+            ) {
+                const results = action.payload.results;
+                // To ensure the app is running fluidly, we need to ensure the elements we supply to the react dom
+                // have unique key values, I have noticed that we have repeated usage of the ids inbetween search queries
+                // if there is a conflict between the keys, this will hurt both reacts performance and will throw some exceptions
+                // solution then must be to take the timestamp at which this query results have been received and append this timestamp
+                // to the end of each of the images id field.
                 let epochTimeStampIdDifferentiator = Math.random();
                 const resultsWithDifferentiatedIds = [];
-                payload.forEach((searchResult: UnsplashApiSearchResult) => {
+                results.forEach((searchResult: UnsplashApiSearchResult) => {
                     searchResult.id += "-" + epochTimeStampIdDifferentiator;
                     // incrementing the differentiator just to be safe that we dont have to of the same ids
                     // in the same query result
                     epochTimeStampIdDifferentiator++;
                     resultsWithDifferentiatedIds.push(searchResult);
                 });
-
                 UnsplashViewerState.searchResults =
-                    UnsplashViewerState.searchResults.concat(payload);
+                    UnsplashViewerState.searchResults.concat(results);
+
+                if (UnsplashViewerState.searchResults.length > 0) {
+                    if (results.length > 0) {
+                        UnsplashViewerState.searchStatus = "Success";
+                    } else {
+                        // we've retrieved all the results from the api, nothing else to retrieve
+                        UnsplashViewerState.searchStatus = "All results retrieved";
+                    }
+                } else {
+                    // only going to trigger this status when we have received absolutely no data from
+                    // this query, ending
+                    UnsplashViewerState.searchStatus = "No Results";
+                }
+            } else {
+                UnsplashViewerState.searchStatus = "Error";
             }
+        }),
+            builder.addCase(searchUnsplashData.pending, (UnsplashViewerState) => {
+                UnsplashViewerState.searchStatus = "In Progress";
+            });
+        builder.addCase(searchUnsplashData.rejected, (UnsplashViewerState) => {
+            UnsplashViewerState.searchStatus = "Error";
         });
     },
 });

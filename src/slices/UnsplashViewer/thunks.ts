@@ -23,8 +23,8 @@ export const searchUnsplashData = createAsyncThunk(
                 }
                 return response.json();
             })
-            .catch(() => {
-                return null;
+            .catch((error) => {
+                throw Error(error.message);
             });
         return response;
     }

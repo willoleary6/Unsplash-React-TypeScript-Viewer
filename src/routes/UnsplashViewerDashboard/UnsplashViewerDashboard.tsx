@@ -1,52 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { searchUnsplashData } from "../../slices/UnsplashViewer/thunks";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { selectUnsplashSearchResults } from "../../slices/UnsplashViewer/selectors";
-import {
-    incrementCurrentResultPage,
-    UnsplashApiSearchResult,
-    updateSearchQuery,
-} from "../../slices/UnsplashViewer/slice";
+import { selectUnsplashSearchStatus } from "../../slices/UnsplashViewer/selectors";
+import { updateSearchQuery } from "../../slices/UnsplashViewer/slice";
 import { SearchBar } from "../../features/SearchBar";
-import { GalleryTile } from "../../features/GalleryTile";
-import { GalleryModal } from "../../features/GalleryModal";
-import InfiniteScroll from "react-infinite-scroll-component";
+
 import { LoadingSpinner } from "../../features/LoadingSpinner";
+import { Gallery } from "../../features/Gallery";
+import { SearchStatusBox } from "../../features/SearchStatusBox";
 
 export function UnsplashViewerDashboard(): JSX.Element {
-    const [showModal, setShowModal] = useState(false);
-
-    const [hasMore, setHasMore] = useState(false);
-    const searchResults = useAppSelector(selectUnsplashSearchResults);
-    const [infiniteScrollLength, setInfiniteScrollLength] = useState(10);
-
-    const [viewableImages, setViewableImages] = useState(
-        searchResults.slice(0, infiniteScrollLength)
-    );
-
-    useEffect(() => {
-        fetchMoreData();
-    }, [searchResults]);
-
-    useEffect(() => {
-        setViewableImages(searchResults.slice(0, infiniteScrollLength));
-    }, [infiniteScrollLength, searchResults]);
-
-    const fetchMoreData = () => {
-        let listIncrementSize = 10;
-        if (searchResults.length > viewableImages.length) {
-            if (searchResults.length - viewableImages.length < infiniteScrollLength) {
-                listIncrementSize = searchResults.length - viewableImages.length;
-            }
-            setInfiniteScrollLength(infiniteScrollLength + listIncrementSize);
-            setHasMore(true);
-        } else if (searchResults.length !== 0) {
-            setHasMore(false);
-            dispatch(incrementCurrentResultPage());
-            dispatch(searchUnsplashData());
-        }
-    };
-
+    const searchStatus = useAppSelector(selectUnsplashSearchStatus);
     const dispatch = useAppDispatch();
 
     const searchExecution = (searchInput: string) => {
@@ -54,6 +18,40 @@ export function UnsplashViewerDashboard(): JSX.Element {
         dispatch(searchUnsplashData());
     };
 
+    const determineUiElementsToRender = () => {
+        switch (searchStatus) {
+            case "Success":
+                return <Gallery />;
+            case "All results retrieved":
+                return (
+                    <div>
+                        <Gallery />
+                        <SearchStatusBox messageToDisplay="All results retrieved" isError={false} />
+                    </div>
+                );
+            case "No Results":
+                return (
+                    <SearchStatusBox
+                        messageToDisplay="Unable to find any images for that query"
+                        isError={false}
+                    />
+                );
+
+            case "In Progress":
+                return <LoadingSpinner />;
+            case "Error":
+                return (
+                    <SearchStatusBox messageToDisplay="Something went wrong...." isError={true} />
+                );
+            default:
+                return (
+                    <SearchStatusBox
+                        messageToDisplay="Search and view a gallery of images provided by Unsplash"
+                        isError={false}
+                    />
+                );
+        }
+    };
     return (
         <>
             {/* Wrap it in a dummy jsx parent */}
@@ -64,28 +62,7 @@ export function UnsplashViewerDashboard(): JSX.Element {
                 </div>
                 <div className="col-lg-4 mt-5"></div>
             </div>
-            <div className=" overflow-hidden flex flex-col"></div>
-            <section className="overflow-hidden text-gray-700 ">
-                <div className="container px-5 py-2 mx-auto lg:pt-12 lg:px-32">
-                    <InfiniteScroll
-                        className="flex flex-wrap -m-1 md:-m-2 overflow-hidden "
-                        dataLength={viewableImages.length}
-                        next={fetchMoreData}
-                        hasMore={hasMore}
-                        loader={<LoadingSpinner />}
-                    >
-                        {viewableImages.map((searchResult: UnsplashApiSearchResult) => (
-                            <GalleryTile
-                                key={searchResult.id} // issue here with the keys, need to have only unique photos
-                                imageSearchResult={searchResult}
-                                showModal={showModal}
-                                setShowModal={setShowModal}
-                            />
-                        ))}
-                    </InfiniteScroll>
-                </div>
-                <GalleryModal showModal={showModal} setShowModal={setShowModal} />
-            </section>
+            {determineUiElementsToRender()}
         </>
     );
 }
