@@ -29,6 +29,14 @@ export const Gallery = (): JSX.Element => {
         fetchMoreData();
     }, [searchResults]);
 
+    useEffect(() => {
+        if (searchStatus === "Success") {
+            setHasMore(true);
+        } else {
+            setHasMore(false);
+        }
+    }, [searchStatus]);
+
     const fetchMoreData = () => {
         let listIncrementSize = 10;
         if (searchResults.length > viewableImages.length) {
@@ -37,16 +45,12 @@ export const Gallery = (): JSX.Element => {
             }
             setInfiniteScrollLength(infiniteScrollLength + listIncrementSize);
             setViewableImages(searchResults.slice(0, infiniteScrollLength));
-            if (searchStatus === "Success") {
-                setHasMore(true);
-            } else {
-                setHasMore(false);
-            }
         } else if (searchResults.length !== 0) {
-            setHasMore(false);
-
             dispatch(incrementCurrentResultPage());
             dispatch(searchUnsplashData());
+        } else {
+            setInfiniteScrollLength(10);
+            setViewableImages([]);
         }
     };
 

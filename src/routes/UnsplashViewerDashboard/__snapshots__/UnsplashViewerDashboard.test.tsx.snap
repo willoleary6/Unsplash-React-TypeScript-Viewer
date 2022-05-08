@@ -76,57 +76,55 @@ exports[`GalleryModal render testing renders and takes snapshot to track jsx ele
         className="col-lg-4 mt-5"
       />
     </div>
-    <div>
-      <Gallery>
-        <section
-          className="overflow-hidden text-gray-700  flex flex-col"
-        >
-          <div
-            className="container px-5 py-2 mx-auto lg:pt-12 lg:px-32"
-          >
-            <InfiniteScroll
-              className="flex flex-wrap -m-1 md:-m-2 overflow-hidden "
-              dataLength={0}
-              hasMore={false}
-              loader={<LoadingSpinner />}
-              next={[Function]}
-            >
-              <div
-                className="infinite-scroll-component__outerdiv"
-                style={Object {}}
-              >
-                <div
-                  className="infinite-scroll-component flex flex-wrap -m-1 md:-m-2 overflow-hidden "
-                  style={
-                    Object {
-                      "WebkitOverflowScrolling": "touch",
-                      "height": "auto",
-                      "overflow": "auto",
-                    }
-                  }
-                />
-              </div>
-            </InfiniteScroll>
-          </div>
-          <GalleryModal
-            setShowModal={[Function]}
-            showModal={false}
-          />
-        </section>
-      </Gallery>
-      <SearchStatusBox
-        isError={false}
-        messageToDisplay="All results retrieved"
+    <Gallery>
+      <section
+        className="overflow-hidden text-gray-700  flex flex-col"
       >
         <div
-          className="container px-5 py-2 mx-auto lg:pt-12 lg:px-32 text-center bg-gray-300"
+          className="container px-5 py-2 mx-auto lg:pt-12 lg:px-32"
         >
-          <p>
-            All results retrieved
-          </p>
+          <InfiniteScroll
+            className="flex flex-wrap -m-1 md:-m-2 overflow-hidden "
+            dataLength={0}
+            hasMore={false}
+            loader={<LoadingSpinner />}
+            next={[Function]}
+          >
+            <div
+              className="infinite-scroll-component__outerdiv"
+              style={Object {}}
+            >
+              <div
+                className="infinite-scroll-component flex flex-wrap -m-1 md:-m-2 overflow-hidden "
+                style={
+                  Object {
+                    "WebkitOverflowScrolling": "touch",
+                    "height": "auto",
+                    "overflow": "auto",
+                  }
+                }
+              />
+            </div>
+          </InfiniteScroll>
         </div>
-      </SearchStatusBox>
-    </div>
+        <GalleryModal
+          setShowModal={[Function]}
+          showModal={false}
+        />
+      </section>
+    </Gallery>
+    <SearchStatusBox
+      isError={false}
+      messageToDisplay="All results retrieved"
+    >
+      <div
+        className="container px-5 py-2 mx-auto lg:pt-12 lg:px-32 text-center bg-gray-300"
+      >
+        <p>
+          All results retrieved
+        </p>
+      </div>
+    </SearchStatusBox>
   </UnsplashViewerDashboard>
 </Provider>
 `;
@@ -207,6 +205,43 @@ exports[`GalleryModal render testing renders and takes snapshot to track jsx ele
         className="col-lg-4 mt-5"
       />
     </div>
+    <Gallery>
+      <section
+        className="overflow-hidden text-gray-700  flex flex-col"
+      >
+        <div
+          className="container px-5 py-2 mx-auto lg:pt-12 lg:px-32"
+        >
+          <InfiniteScroll
+            className="flex flex-wrap -m-1 md:-m-2 overflow-hidden "
+            dataLength={0}
+            hasMore={false}
+            loader={<LoadingSpinner />}
+            next={[Function]}
+          >
+            <div
+              className="infinite-scroll-component__outerdiv"
+              style={Object {}}
+            >
+              <div
+                className="infinite-scroll-component flex flex-wrap -m-1 md:-m-2 overflow-hidden "
+                style={
+                  Object {
+                    "WebkitOverflowScrolling": "touch",
+                    "height": "auto",
+                    "overflow": "auto",
+                  }
+                }
+              />
+            </div>
+          </InfiniteScroll>
+        </div>
+        <GalleryModal
+          setShowModal={[Function]}
+          showModal={false}
+        />
+      </section>
+    </Gallery>
     <SearchStatusBox
       isError={true}
       messageToDisplay="Something went wrong...."
@@ -302,6 +337,43 @@ exports[`GalleryModal render testing renders and takes snapshot to track jsx ele
         className="col-lg-4 mt-5"
       />
     </div>
+    <Gallery>
+      <section
+        className="overflow-hidden text-gray-700  flex flex-col"
+      >
+        <div
+          className="container px-5 py-2 mx-auto lg:pt-12 lg:px-32"
+        >
+          <InfiniteScroll
+            className="flex flex-wrap -m-1 md:-m-2 overflow-hidden "
+            dataLength={0}
+            hasMore={false}
+            loader={<LoadingSpinner />}
+            next={[Function]}
+          >
+            <div
+              className="infinite-scroll-component__outerdiv"
+              style={Object {}}
+            >
+              <div
+                className="infinite-scroll-component flex flex-wrap -m-1 md:-m-2 overflow-hidden "
+                style={
+                  Object {
+                    "WebkitOverflowScrolling": "touch",
+                    "height": "auto",
+                    "overflow": "auto",
+                  }
+                }
+              />
+            </div>
+          </InfiniteScroll>
+        </div>
+        <GalleryModal
+          setShowModal={[Function]}
+          showModal={false}
+        />
+      </section>
+    </Gallery>
     <SearchStatusBox
       isError={false}
       messageToDisplay="Unable to find any images for that query"
@@ -511,6 +583,43 @@ exports[`GalleryModal render testing renders and takes snapshot to track jsx ele
         className="col-lg-4 mt-5"
       />
     </div>
+    <Gallery>
+      <section
+        className="overflow-hidden text-gray-700  flex flex-col"
+      >
+        <div
+          className="container px-5 py-2 mx-auto lg:pt-12 lg:px-32"
+        >
+          <InfiniteScroll
+            className="flex flex-wrap -m-1 md:-m-2 overflow-hidden "
+            dataLength={0}
+            hasMore={false}
+            loader={<LoadingSpinner />}
+            next={[Function]}
+          >
+            <div
+              className="infinite-scroll-component__outerdiv"
+              style={Object {}}
+            >
+              <div
+                className="infinite-scroll-component flex flex-wrap -m-1 md:-m-2 overflow-hidden "
+                style={
+                  Object {
+                    "WebkitOverflowScrolling": "touch",
+                    "height": "auto",
+                    "overflow": "auto",
+                  }
+                }
+              />
+            </div>
+          </InfiniteScroll>
+        </div>
+        <GalleryModal
+          setShowModal={[Function]}
+          showModal={false}
+        />
+      </section>
+    </Gallery>
     <LoadingSpinner>
       <div
         className=" grid place-items-center"
@@ -613,6 +722,43 @@ exports[`GalleryModal render testing renders and takes snapshot to track jsx ele
         className="col-lg-4 mt-5"
       />
     </div>
+    <Gallery>
+      <section
+        className="overflow-hidden text-gray-700  flex flex-col"
+      >
+        <div
+          className="container px-5 py-2 mx-auto lg:pt-12 lg:px-32"
+        >
+          <InfiniteScroll
+            className="flex flex-wrap -m-1 md:-m-2 overflow-hidden "
+            dataLength={0}
+            hasMore={false}
+            loader={<LoadingSpinner />}
+            next={[Function]}
+          >
+            <div
+              className="infinite-scroll-component__outerdiv"
+              style={Object {}}
+            >
+              <div
+                className="infinite-scroll-component flex flex-wrap -m-1 md:-m-2 overflow-hidden "
+                style={
+                  Object {
+                    "WebkitOverflowScrolling": "touch",
+                    "height": "auto",
+                    "overflow": "auto",
+                  }
+                }
+              />
+            </div>
+          </InfiniteScroll>
+        </div>
+        <GalleryModal
+          setShowModal={[Function]}
+          showModal={false}
+        />
+      </section>
+    </Gallery>
     <SearchStatusBox
       isError={false}
       messageToDisplay="Search and view a gallery of images provided by Unsplash"

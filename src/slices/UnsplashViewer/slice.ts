@@ -118,9 +118,11 @@ export const unsplashViewer = createSlice({
                     // only going to trigger this status when we have received absolutely no data from
                     // this query, ending
                     UnsplashViewerState.searchStatus = "No Results";
+                    UnsplashViewerState.searchResults = [];
                 }
             } else {
                 UnsplashViewerState.searchStatus = "Error";
+                UnsplashViewerState.searchResults = [];
             }
         }),
             builder.addCase(searchUnsplashData.pending, (UnsplashViewerState) => {
@@ -128,6 +130,7 @@ export const unsplashViewer = createSlice({
             });
         builder.addCase(searchUnsplashData.rejected, (UnsplashViewerState) => {
             UnsplashViewerState.searchStatus = "Error";
+            UnsplashViewerState.searchResults = [];
         });
     },
 });
