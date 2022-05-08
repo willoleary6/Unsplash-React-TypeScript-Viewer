@@ -81,7 +81,26 @@ export const unsplashViewer = createSlice({
     extraReducers: (builder) => {
         builder.addCase(searchUnsplashData.fulfilled, (UnsplashViewerState, action) => {
             const payload = action.payload.results;
-            UnsplashViewerState.searchResults = UnsplashViewerState.searchResults.concat(payload);
+
+            // To ensure the app is running fluidly, we need to ensure the elements we supply to the react dom
+            // have unique key values, I have noticed that we have repeated usage of the ids inbetween search queries
+            // if there is a conflict between the keys, this will hurt both reacts performance and will throw some exceptions
+            // solution then must be to take the timestamp at which this query results have been received and append this timestamp
+            // to the end of each of the images id field.
+            if (payload.constructor.name === "Array") {
+                let epochTimeStampIdDifferentiator = Math.random();
+                const resultsWithDifferentiatedIds = [];
+                payload.forEach((searchResult: UnsplashApiSearchResult) => {
+                    searchResult.id += "-" + epochTimeStampIdDifferentiator;
+                    // incrementing the differentiator just to be safe that we dont have to of the same ids
+                    // in the same query result
+                    epochTimeStampIdDifferentiator++;
+                    resultsWithDifferentiatedIds.push(searchResult);
+                });
+
+                UnsplashViewerState.searchResults =
+                    UnsplashViewerState.searchResults.concat(payload);
+            }
         });
     },
 });

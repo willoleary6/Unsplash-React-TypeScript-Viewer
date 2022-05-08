@@ -16,7 +16,7 @@ import { LoadingSpinner } from "../../features/LoadingSpinner";
 export function UnsplashViewerDashboard(): JSX.Element {
     const [showModal, setShowModal] = useState(false);
 
-    const [hasMore, setHasMore] = useState(true);
+    const [hasMore, setHasMore] = useState(false);
     const searchResults = useAppSelector(selectUnsplashSearchResults);
     const [infiniteScrollLength, setInfiniteScrollLength] = useState(10);
 
