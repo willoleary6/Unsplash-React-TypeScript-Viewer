@@ -35,13 +35,15 @@ export function UnsplashViewerDashboard(): JSX.Element {
                 return (
                     <SearchStatusBox messageToDisplay="Something went wrong...." isError={true} />
                 );
-            default:
+            case "Idle":
                 return (
                     <SearchStatusBox
                         messageToDisplay="Search and view a gallery of images provided by Unsplash"
                         isError={false}
                     />
                 );
+            default:
+                return <></>;
         }
     };
     return (
