@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer render testing renders panel and takes snapshot to track jsx element changes, will also test for exceptions in element code 1`] = `
+<Fragment>
+  <div
+    className=" w-full bg-gray-700 text-gray-200 shadow-inner"
+  >
+    <div>
+      Unsplash Viewer - 
+      2022
+    </div>
+  </div>
+</Fragment>
+`;

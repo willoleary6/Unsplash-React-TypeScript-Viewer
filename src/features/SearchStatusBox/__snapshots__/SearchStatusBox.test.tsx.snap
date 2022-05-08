@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchStatusBox render testing renders component in error mode and takes snapshot to track jsx element changes, will also test for exceptions in element code 1`] = `
+<div
+  className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative text-center"
+  role="alert"
+>
+  <span
+    className="block sm:inline"
+  >
+    test
+  </span>
+</div>
+`;
+
+exports[`SearchStatusBox render testing renders panel and takes snapshot to track jsx element changes, will also test for exceptions in element code 1`] = `
+<div
+  className="container px-5 py-2 mx-auto lg:pt-12 lg:px-32 text-center bg-gray-300"
+>
+  <p>
+    test
+  </p>
+</div>
+`;

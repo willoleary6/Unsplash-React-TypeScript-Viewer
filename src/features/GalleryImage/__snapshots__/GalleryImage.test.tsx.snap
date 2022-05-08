@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GalleryImage render testing renders panel and takes snapshot to track jsx element changes, will also test for exceptions in element code 1`] = `
+<Fragment>
+  <LoadingSpinner />
+  <div
+    className="hidden"
+  >
+    <img
+      alt="gallery"
+      className="block p-1 md:p-2 object-cover object-center w-full h-full rounded-lg"
+      onLoad={[Function]}
+      src="https://images.unsplash.com/photo-1648737963059-59ec8e2d50c5?crop=entropy&cs=srgb&fm=jpg&ixid=MnwzMjU1NzJ8MXwxfHNlYXJjaHwxfHxvZmZpY2V8ZW58MHx8fHwxNjUxNjA5NTQ4&ixlib=rb-1.2.1&q=85"
+    />
+  </div>
+</Fragment>
+`;
