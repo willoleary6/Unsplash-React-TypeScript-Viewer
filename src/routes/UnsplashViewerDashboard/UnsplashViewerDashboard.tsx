@@ -18,17 +18,10 @@ export function UnsplashViewerDashboard(): JSX.Element {
         dispatch(searchUnsplashData());
     };
 
-    const determineUiElementsToRender = () => {
+    const StatusMessageToShow = () => {
         switch (searchStatus) {
-            case "Success":
-                return <Gallery />;
             case "All results retrieved":
-                return (
-                    <div>
-                        <Gallery />
-                        <SearchStatusBox messageToDisplay="All results retrieved" isError={false} />
-                    </div>
-                );
+                return <SearchStatusBox messageToDisplay="All results retrieved" isError={false} />;
             case "No Results":
                 return (
                     <SearchStatusBox
@@ -36,7 +29,6 @@ export function UnsplashViewerDashboard(): JSX.Element {
                         isError={false}
                     />
                 );
-
             case "In Progress":
                 return <LoadingSpinner />;
             case "Error":
@@ -62,7 +54,8 @@ export function UnsplashViewerDashboard(): JSX.Element {
                 </div>
                 <div className="col-lg-4 mt-5"></div>
             </div>
-            {determineUiElementsToRender()}
+            <Gallery />
+            {StatusMessageToShow()}
         </>
     );
 }
