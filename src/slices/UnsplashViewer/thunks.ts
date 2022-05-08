@@ -5,11 +5,10 @@ export const searchUnsplashData = createAsyncThunk(
     "unsplash/searchUnsplash",
     async (_args: void, { getState }) => {
         const state = getState() as { unsplash: UnsplashViewerState };
-
         const response = await fetch(
             "https://api.unsplash.com/search/photos?query=" +
                 state.unsplash.searchQuery +
-                "&client_id=M5VBH_2QX33zPVyoWGvnVmb8zQbcESVOyCqQO185FEk" +
+                "&client_id=K8Kqj3RJH-ptxWgfNvHhHjK8rer1awjsCja7N2pVBBI" +
                 "&per_page=30" +
                 "&page=" +
                 state.unsplash.currentResultPage.toString(),

@@ -2,7 +2,7 @@ import React from "react";
 
 export const LoadingSpinner = (): JSX.Element => {
     return (
-        <div className=" grid place-items-center">
+        <div className="grid place-items-center">
             <svg
                 role="status"
                 className="inline w-10 h-10 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600 "
