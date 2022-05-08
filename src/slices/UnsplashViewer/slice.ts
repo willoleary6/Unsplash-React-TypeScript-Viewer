@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { searchUnsplashData } from "./thunks";
 export interface UnsplashViewerState {
-    apiRequestInProgress: boolean;
     searchResults: UnsplashApiSearchResult[];
     selectedGalleryImageId: string;
     searchQuery: string;
@@ -40,9 +39,6 @@ export interface UnsplashUserProfileImages {
 }
 export interface UnsplashUser {
     instagram_username: string;
-    first_name: string;
-    last_name: string;
-    name: string;
     username: string;
     links: UnsplashUserLinks;
     profile_image: UnsplashUserProfileImages;
@@ -50,6 +46,7 @@ export interface UnsplashUser {
 
 export interface UnsplashApiSearchResult {
     id: string;
+    description: null | string;
     alt_description: null | string;
     color: string;
     created_at: string;
@@ -62,7 +59,6 @@ export interface UnsplashApiSearchResult {
 }
 
 export const initialState: UnsplashViewerState = {
-    apiRequestInProgress: false,
     selectedGalleryImageId: "",
     searchResults: [],
     searchQuery: "",

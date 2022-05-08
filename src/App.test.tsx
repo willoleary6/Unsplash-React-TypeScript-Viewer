@@ -15,6 +15,6 @@ describe("Application root", () => {
             </Provider>
         );
 
-        expect(getByText(/GeoJSON Features/i)).toBeInTheDocument();
+        expect(getByText(/Unsplash Viewer/i)).toBeInTheDocument();
     });
 });

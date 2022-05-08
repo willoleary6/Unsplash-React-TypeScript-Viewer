@@ -8,7 +8,7 @@ function App(): JSX.Element {
     routes.forEach((route) => {
         renderRoutes.push(
             <Route exact key={route.id} path={route.path}>
-                {route.component ? <route.component /> : <></>}
+                <route.component />
             </Route>
         );
     });

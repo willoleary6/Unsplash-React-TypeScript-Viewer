@@ -7,7 +7,6 @@ interface SearchBarProps {
 export const SearchBar = ({ executeSearchFunction }: SearchBarProps): JSX.Element => {
     const [searchInput, setSearchInput] = useState("");
     const [isValidInput, setValidInput] = useState(false);
-    const [errorMessage, setErrorMessage] = useState("");
     useEffect(() => {
         validateInput(searchInput);
     }, [searchInput]);
@@ -26,34 +25,6 @@ export const SearchBar = ({ executeSearchFunction }: SearchBarProps): JSX.Elemen
         }
     };
 
-    const displayErrorMessageIfNeeded = () => {
-        if (!isValidInput) {
-            return <p className="error-message">{errorMessage}</p>;
-        } else {
-            return <></>;
-        }
-    };
-    /*
-    return (
-        <>
-            <div>
-                <div>
-                    <input
-                        onKeyUp={enterKeyPressed}
-                        onChange={(event) => setSearchInput(event.target.value)}
-                    />
-                    <button
-                        disabled={!isValidInput}
-                        onClick={() => executeSearchFunction(searchInput)}
-                    >
-                        🔍
-                    </button>
-                </div>
-                {displayErrorMessageIfNeeded()}
-            </div>
-        </>
-    );*/
-
     return (
         <>
             <div className="flex justify-center">
@@ -69,7 +40,7 @@ export const SearchBar = ({ executeSearchFunction }: SearchBarProps): JSX.Elemen
                             onChange={(event) => setSearchInput(event.target.value)}
                         />
                         <button
-                            className="btn inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700  focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out flex items-center"
+                            className="btn px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700  focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out flex items-center"
                             type="button"
                             id="button-addon2"
                             disabled={!isValidInput}

@@ -12,7 +12,7 @@ export interface Route {
     path: string;
     label: string;
     icon?: JSX.Element;
-    component?: React.FC;
+    component: React.FC;
     subroutes?: Route[];
 }
 

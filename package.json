@@ -28,7 +28,7 @@
     "file-saver": "^2.0.5",
     "flowbite": "^1.4.5",
     "fontawesome-4.7": "^4.7.0",
-    "jest": "^27.4.7",
+    "jest": "^27.5.1",
     "jest-cli": "^27.4.7",
     "node-fetch": "^3.2.0",
     "prettier": "^2.4.1",
